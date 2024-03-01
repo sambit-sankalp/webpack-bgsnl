@@ -1,21 +1,48 @@
 {
-  "name": "hey",
-  "version": "0.1.0",
+  "name": "bgsnl",
+  "version": "1.1.6",
+  "homepage": "https://bulgariansocietynetherlands.nl",
   "private": true,
+  "basename": "/",
   "dependencies": {
+    "@reduxjs/toolkit": "^1.9.3",
+    "@stripe/react-stripe-js": "^1.16.5",
+    "@stripe/stripe-js": "^1.54.1",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "axios": "^1.6.7",
+    "bootstrap": "^4.6.2",
+    "camelcase": "^5.2.0",
+    "date-fns": "^2.29.3",
+    "emailjs": "^4.0.1",
+    "emailjs-com": "^3.2.0",
+    "formik": "^2.2.9",
+    "path-browserify": "^1.0.1",
     "react": "^18.2.0",
+    "react-bootstrap": "^2.10.1",
+    "react-countup": "^4.4.0",
     "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
+    "react-helmet": "^6.1.0",
+    "react-icons": "^3.11.0",
+    "react-lazy-load-image-component": "^1.5.6",
+    "react-parallax": "^3.3.0",
+    "react-redux": "^8.0.5",
+    "react-refresh": "^0.14.0",
+    "react-router-dom": "^6.22.1",
+    "react-scripts": "^5.0.1",
+    "react-scroll-up": "^1.3.7",
+    "react-slick": "^0.30.2",
+    "react-visibility-sensor": "^5.1.1",
+    "sass": "^1.50.1",
+    "slick-carousel": "^1.8.1",
+    "web-vitals": "^2.1.4",
+    "yup": "^1.3.3"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test": "react-scripts test"
   },
   "eslintConfig": {
     "extends": [
@@ -34,5 +61,25 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.24.0",
+    "@babel/preset-env": "^7.24.0",
+    "@babel/preset-react": "^7.23.3",
+    "babel-loader": "^9.1.3",
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
+    "css-loader": "^6.10.0",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.6.0",
+    "mini-css-extract-plugin": "^2.8.1",
+    "react-loadable": "^5.5.0",
+    "sass-loader": "^14.1.1",
+    "style-loader": "^3.3.4",
+    "webpack": "^5.90.3",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1",
+    "webpack-merge": "^5.10.0"
   }
 }
