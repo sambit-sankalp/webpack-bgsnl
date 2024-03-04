@@ -21,7 +21,7 @@ import Articles from "./pages/information/Articles";
 import RegionParamRoute from "./component/functional/RegionParamRoute";
 
 // Pages
-const Home = lazy(() => import("./pages/Home"));
+import Home from './pages/Home'
 const About = lazy(() => import("./pages/information/About"));
 const Contact = lazy(() => import("./pages/information/Contact"));
 const Policy = lazy(() => import("./pages/information/Policy"));
@@ -117,79 +117,8 @@ const Root = () => {
   else {
     return (
       <BrowserRouter basename={"/"}>
-        <PageGoTop>
-          <Suspense fallback={<PageLoading />}>
-            {notification}
-            {error && <Error errorMessage={errorMessage} />}
-            <Routes>
-            {/* The '/' route can be found in the seperate Routeses in order to work the current functionality */}
-              <Route exact path="/404" component={Error404} />
-              <Route exact path={`/about`} component={About} />
-              <Route exact path={`/rules-and-regulations`} component={Policy} />
-              <Route exact path={`/articles`} component={Articles} />
-              {/* <Route exact path={`/active-member`} >
-                <ActiveMember setNotification={setNotification} />
-              </Route> */}
-              {/* <Route exact path={`/contest/promo-video`} component={Contest} /> */}
-              {/* <Route exact path={`/contest/register`}>
-              <ContestRegister setNotification={setNotification} />
-            </Route> */}
-
-              <RegionParamRoute exact path={`/:region/board`} component={Board} />
-              <RegionParamRoute exact path={`/:region/contact`} component={Contact} />
-              <RegionParamRoute exact path={`/:region/committees`} component={Committees} />
-              <RegionParamRoute exact path={`/:region/events`} component={Events} />
-              <RegionParamRoute exact path={`/:region/future-events`} component={FutureEvents} />
-              <RegionParamRoute exact path={`/:region/past-events`} component={PastEvents} />
-              <RegionParamRoute path={`/:region/event-details/:eventId`} component={EventDetails} />
-              <RegionParamRoute exact path={"/:region/other-event-details/:eventId"}>
-                <NonSocietyEvent setNotification={setNotification} />
-              </RegionParamRoute>
-              <RegionParamRoute
-                path={`/:region/event-reflection/:eventId`}
-                component={EventReflection}
-              />
-            
-
-              {/* Redirect pages */}
-
-              <Route exact path={`/success`} component={Success} />
-              <Route exact path={`/donation/success`} component={SuccessDonation} />
-              <Route exact path={`/fail`} component={Fail} />
-
-              {/* Auth pages */}
-              {user.token ? (
-                <Routes>
-                  <Route exact path={`/user`} component={User} />
-                  <RegionParamRoute
-                    exact
-                    path={"/:region/purchase-ticket/:eventId/:userId"}
-                    component={MemberPurchase}
-                  />
-                  <Route exact path="/:region?" component={Home} />
-                  <Route path="*" component={Error404} />
-                </Routes>
-              ) : (
-                <Routes>
-                  <Route exact path={`/login`}>
-                    <LogIn setNotification={setNotification} />
-                  </Route>
-                  <Route exact path={`/:region?/signup`}>
-                    <SignUp setNotification={setNotification} />
-                  </Route>
-                  <RegionParamRoute
-                    exact
-                    path={"/:region/purchase-ticket/:eventId"}
-                    component={NonMemberPurchase}
-                  />
-                  <Route exact path="/:region?" component={Home} />
-                  <Route path="*" component={Error404} />
-                </Routes>
-              )}
-            </Routes>
-          </Suspense>
-        </PageGoTop>
-      </BrowserRouter>
+        <Home />
+      </BrowserRouter >
     );
   };
 }
@@ -200,5 +129,4 @@ root.render(
   </Provider>
 );
 
-serviceWorker.unregister();
 

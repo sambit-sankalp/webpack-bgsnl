@@ -14,11 +14,17 @@
     "axios": "^1.6.7",
     "bootstrap": "^4.6.2",
     "camelcase": "^5.2.0",
+    "crypto": "npm:crypto-browserify",
+    "crypto-browserify": "^3.12.0",
     "date-fns": "^2.29.3",
     "emailjs": "^4.0.1",
     "emailjs-com": "^3.2.0",
     "formik": "^2.2.9",
+    "https-browserify": "^1.0.0",
+    "os": "^0.1.2",
+    "os-browserify": "^0.3.0",
     "path-browserify": "^1.0.1",
+    "process": "^0.11.10",
     "react": "^18.2.0",
     "react-bootstrap": "^2.10.1",
     "react-countup": "^4.4.0",
@@ -36,19 +42,25 @@
     "react-visibility-sensor": "^5.1.1",
     "sass": "^1.50.1",
     "slick-carousel": "^1.8.1",
+    "stream": "npm:stream-browserify",
+    "stream-browserify": "^3.0.0",
+    "stream-http": "^3.2.0",
     "web-vitals": "^2.1.4",
     "yup": "^1.3.3"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test"
+    "start": "webpack-dev-server --config config/webpack.dev.js --open",
+    "build": "webpack --config config/webpack.prod.js",
+    "lint": "eslint src --ext .jsx --ext .js"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
       "react-app/jest"
     ]
+  },
+  "browser": {
+    "fs": false
   },
   "browserslist": {
     "production": [
@@ -66,18 +78,31 @@
     "@babel/core": "^7.24.0",
     "@babel/preset-env": "^7.24.0",
     "@babel/preset-react": "^7.23.3",
+    "assert": "^2.1.0",
     "babel-loader": "^9.1.3",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
+    "clean-webpack-plugin": "^4.0.0",
+    "compression-webpack-plugin": "^11.1.0",
+    "constants-browserify": "^1.0.0",
+    "copy-webpack-plugin": "^12.0.2",
     "css-loader": "^6.10.0",
     "file-loader": "^6.2.0",
+    "html-loader": "^5.0.0",
     "html-webpack-plugin": "^5.6.0",
+    "interpolate-html-plugin": "^4.0.0",
     "mini-css-extract-plugin": "^2.8.1",
     "react-loadable": "^5.5.0",
+    "resolve-url": "^0.2.1",
+    "resolve-url-loader": "^5.0.0",
     "sass-loader": "^14.1.1",
     "style-loader": "^3.3.4",
+    "terser-webpack-plugin": "^5.3.10",
+    "url-loader": "^4.1.1",
+    "util": "^0.12.5",
     "webpack": "^5.90.3",
+    "webpack-bundle-analyzer": "^4.10.1",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^4.15.1",
     "webpack-merge": "^5.10.0"
