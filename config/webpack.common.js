@@ -1,28 +1,33 @@
-const paths = require('./paths');
 const path = require('path');
-
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+// Common configuration
+const paths = require('./paths');
 
 module.exports = {
   entry: [paths.src + '/index.js'],
   plugins: [
     new CleanWebpackPlugin(),
-
     new CopyPlugin({
       patterns: [
         {
           from: paths.public + '/assets',
           to: 'assets',
         },
+        {
+          from: paths.public + '/manifest.json',
+          to: paths.build + '/manifest.json',
+        },
       ],
     }),
 
     new HtmlWebpackPlugin({
       favicon: path.resolve(__dirname, '../public/favicon.ico'),
-      template: path.resolve(__dirname, '../public/index.html'), // template file
-      filename: 'index.html', // output file
+      template: path.resolve(__dirname, '../public/index.html'),
+      manifest: path.resolve(__dirname, '../public/manifest.json'),
+      filename: 'index.html',
     }),
   ],
 
@@ -54,6 +59,9 @@ module.exports = {
       vm: false,
       zlib: false,
     },
+    alias: {
+      '@assets': path.resolve(__dirname, '../public/assets/'),
+    },
   },
   module: {
     rules: [
@@ -72,28 +80,6 @@ module.exports = {
         use: ['html-loader'],
       },
       {
-        test: /\.scss$/,
-        use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: { url: false },
-          },
-          {
-            loader: 'resolve-url-loader',
-            options: {
-              sourceMap: true,
-            },
-          },
-          {
-            loader: 'sass-loader',
-            options: {
-              sourceMap: true,
-            },
-          },
-        ],
-      },
-      {
         test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         use: [
           {
@@ -101,18 +87,32 @@ module.exports = {
             options: {
               limit: 10000,
               mimetype: 'application/font-woff',
+              name: '[name].[hash].[ext]',
+              outputPath: 'static/fonts',
             },
           },
         ],
       },
       {
-        test: /\.(ttf|eot|svg|png|jpg|jpeg|gif|ico)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        test: /\.(ttf|eot)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         use: [
           {
             loader: 'file-loader',
             options: {
               name: '[name].[hash].[ext]',
-              outputPath: 'images',
+              outputPath: 'static/fonts',
+            },
+          },
+        ],
+      },
+      {
+        test: /\.(svg|png|jpg|jpeg|gif|ico|webp)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[hash].[ext]',
+              outputPath: 'static/media',
             },
           },
         ],

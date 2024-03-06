@@ -1,13 +1,20 @@
 const path = require('path');
-const paths = require('./paths');
 const { merge } = require('webpack-merge');
-const common = require('./webpack.common.js');
-
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
-
 const CompressionPlugin = require('compression-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+
+// Common configuration
+const common = require('./webpack.common.js');
+const getStyleLoaders = require('./common.js');
+const paths = require('./paths');
+
+// Regex for CSS and SASS
+const cssRegex = /\.css$/;
+const cssModuleRegex = /\.module\.css$/;
+const sassRegex = /\.(scss|sass)$/;
+const sassModuleRegex = /\.module\.(scss|sass)$/;
 
 module.exports = merge(common, {
   mode: 'production',
@@ -27,30 +34,42 @@ module.exports = merge(common, {
   module: {
     rules: [
       {
-        test: /\.scss$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          {
-            loader: 'css-loader',
-            options: { url: false },
-          },
-          {
-            loader: 'resolve-url-loader',
-            options: {
-              sourceMap: true,
-            },
-          },
-          {
-            loader: 'sass-loader',
-            options: {
-              sourceMap: true,
-            },
-          },
-        ],
+        test: cssRegex,
+        exclude: cssModuleRegex,
+        use: getStyleLoaders(false, { importLoaders: 1, sourceMap: false }),
+        sideEffects: true,
       },
       {
-        test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader'],
+        test: cssModuleRegex,
+        use: getStyleLoaders(false, {
+          importLoaders: 1,
+          sourceMap: false,
+          modules: true,
+        }),
+        sideEffects: true,
+      },
+      {
+        test: sassRegex,
+        exclude: sassModuleRegex,
+        use: getStyleLoaders(
+          false,
+          { importLoaders: 2, sourceMap: false },
+          true
+        ),
+        sideEffects: true,
+      },
+      {
+        test: sassModuleRegex,
+        use: getStyleLoaders(
+          false,
+          {
+            importLoaders: 2,
+            sourceMap: false,
+            modules: true,
+          },
+          true
+        ),
+        sideEffects: true,
       },
     ],
   },

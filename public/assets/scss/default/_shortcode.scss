@@ -139,11 +139,11 @@ font-family: 'Poppins', sans-serif;
 }
 
 
-@for $i from 1 through 36 {
-    .bg_image--#{$i} {
-        background-image: url(/assets/images/bg/bg-image-#{$i}.webp) !important;
-    }
-}
+// @for $i from 1 through 36 {
+//     .bg_image--#{$i} {
+//         background-image: url(/public/assets/images/bg/bg-image-#{$i}.webp) !important;
+//     }
+// }
 
 
 
