@@ -17,8 +17,16 @@ module.exports = {
           to: 'assets',
         },
         {
+          from: paths.public + '/assets/js/main.js',
+          to: paths.build + '/static/assets/js/main.js',
+        },
+        {
           from: paths.public + '/manifest.json',
-          to: paths.build + '/manifest.json',
+          to: paths.build + '/static/manifest.json',
+        },
+        {
+          from: paths.public + '/favicon.ico',
+          to: paths.build + '/static/favicon.ico',
         },
       ],
     }),
@@ -80,30 +88,8 @@ module.exports = {
         use: ['html-loader'],
       },
       {
-        test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              limit: 10000,
-              mimetype: 'application/font-woff',
-              name: '[name].[hash].[ext]',
-              outputPath: 'static/fonts',
-            },
-          },
-        ],
-      },
-      {
-        test: /\.(ttf|eot)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[name].[hash].[ext]',
-              outputPath: 'static/fonts',
-            },
-          },
-        ],
+        test: /\.(woff(2)|ttf|eot)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        type: 'asset/resource',
       },
       {
         test: /\.(svg|png|jpg|jpeg|gif|ico|webp)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
