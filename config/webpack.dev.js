@@ -1,3 +1,8 @@
+/**
+ * @file webpack.dev.js
+ * @description Development configuration for webpack.
+ */
+
 const path = require('path');
 const InterpolateHtmlPlugin = require('interpolate-html-plugin');
 const { merge } = require('webpack-merge');
@@ -13,13 +18,25 @@ const cssModuleRegex = /\.module\.css$/;
 const sassRegex = /\.(scss|sass)$/;
 const sassModuleRegex = /\.module\.(scss|sass)$/;
 
+/**
+ * Merge the common configuration with the development-specific configuration.
+ */
 module.exports = merge(common, {
+  /**
+   * Set the mode to 'development'.
+   */
   mode: 'development',
+  /**
+   * Set the output path, filename, and publicPath.
+   */
   output: {
     path: path.resolve(__dirname, paths.build),
     filename: '[name].bundle.js',
     publicPath: '/',
   },
+  /**
+   * Set the module rules for handling CSS and SASS files.
+   */
   module: {
     rules: [
       {
@@ -58,7 +75,13 @@ module.exports = merge(common, {
       },
     ],
   },
+  /**
+   * Set the devtool to 'eval-source-map'.
+   */
   devtool: 'eval-source-map',
+  /**
+   * Set the devServer options.
+   */
   devServer: {
     static: {
       directory: path.join(__dirname, paths.build),
@@ -70,6 +93,8 @@ module.exports = merge(common, {
     hot: true,
     port: 3000,
   },
-
+  /**
+   * Set the plugins for the development configuration.
+   */
   plugins: [new InterpolateHtmlPlugin({ PUBLIC_URL: 'static' })],
 });
