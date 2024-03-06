@@ -7,7 +7,7 @@ const path = require('path');
 const InterpolateHtmlPlugin = require('interpolate-html-plugin');
 const { merge } = require('webpack-merge');
 
-// Common configuration
+// Common configuration files
 const common = require('./webpack.common.js');
 const paths = require('./paths.js');
 const getStyleLoaders = require('./common.js');

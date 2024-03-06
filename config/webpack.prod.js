@@ -11,7 +11,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
-// Common configuration
+// Common configuration files
 const common = require('./webpack.common.js');
 const getStyleLoaders = require('./common.js');
 const paths = require('./paths');

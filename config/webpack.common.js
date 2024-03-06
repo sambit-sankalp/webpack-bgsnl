@@ -8,7 +8,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-// Common configuration
+// Common configuration files
 const paths = require('./paths');
 
 module.exports = {
@@ -69,21 +69,15 @@ module.exports = {
 
   /**
    * Resolve options for resolving module requests.
-   *
-   * @type {Object}
    */
   resolve: {
     /**
      * File extensions to be resolved automatically.
-     *
-     * @type {string[]}
      */
     extensions: ['.js', '.jsx'],
 
     /**
      * Fallback options for resolving modules.
-     *
-     * @type {Object}
      */
     fallback: {
       fs: false,
@@ -114,8 +108,6 @@ module.exports = {
 
     /**
      * Aliases for module resolution.
-     *
-     * @type {Object}
      */
     alias: {
       '@assets': path.resolve(__dirname, '../public/assets/'),
